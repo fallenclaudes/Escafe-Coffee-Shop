@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escafe</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        sage: {
+                            50: '#f2fcf5',
+                            100: '#e1f7e6',
+                            500: '#4ade80', // bright green accent
+                            800: '#166534', // deep forest green
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Lato', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="text-stone-800 selection:bg-sage-100 selection:text-sage-900">
+
+    <nav class="fixed w-full z-40 bg-[#FDFBF7]/90 backdrop-blur-md border-b border-stone-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="window.scrollTo(0,0)">
+                <div class="bg-sage-100 p-2 rounded-full group-hover:bg-sage-800 transition duration-500">
+                    <i data-lucide="leaf" class="text-sage-800 group-hover:text-white w-5 h-5 transition duration-500"></i>
+                </div>
+                <span class="text-2xl font-serif font-bold tracking-tight text-sage-900">
+                    Escafe<span class="text-green-500">.</span>
+                </span>
+            </div>
+
+            <div class="flex items-center gap-8">
+                <div class="hidden md:flex gap-8 text-sm font-bold tracking-widest text-stone-500 uppercase">
+                    <a href="#menu" class="hover:text-sage-800 transition">Blends</a>
+                    <a href="#about" class="hover:text-sage-800 transition">Story</a>
+                    <a href="#locations" class="hover:text-sage-800 transition">Visit</a>
+                </div>
+                <button onclick="toggleCart(true)" class="relative p-2 hover:bg-sage-50 rounded-full transition group text-sage-900">
+                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                    <span id="cart-badge" class="hidden absolute top-0 right-0 bg-sage-800 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-cream">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-screen min-h-[600px] flex items-center pt-20 overflow-hidden">
+        <div class="absolute top-0 right-0 w-full md:w-1/2 h-full bg-sage-100 z-0"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="order-2 md:order-1 animate-[fadeIn_1s_ease-out]">
+                <div class="inline-flex items-center gap-2 px-4 py-1 border border-sage-200 rounded-full bg-white text-sage-800 text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span> Now Brewing: Harvest Moon
+                </div>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight mb-6 text-sage-900">
+                    Sip. Breathe. <br />
+                    <span class="italic text-green-600">Bloom.</span>
+                </h1>
+                <p class="text-stone-500 text-lg mb-10 max-w-md leading-relaxed">
+                    Organic coffee rooted in tranquility. A quiet escape from the noise, brewed with beans touched only by the sun and rain.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#menu" class="bg-sage-900 text-white px-8 py-4 rounded-full font-bold hover:bg-sage-800 hover:scale-105 transition shadow-lg shadow-sage-900/20 flex items-center gap-2">
+                        View Menu <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="order-1 md:order-2 h-[400px] md:h-[600px] relative">
+                <div class="absolute inset-0 bg-white rounded-t-[10rem] rounded-b-[2rem] overflow-hidden shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=2071&auto=format&fit=crop" 
+                         class="w-full h-full object-cover hover:scale-105 transition duration-[2s]" 
+                         style="filter: sepia(20%) brightness(110%) contrast(90%);"
+                         alt="Peaceful Coffee Shop">
+                </div>
+                <div class="absolute bottom-10 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-xs hidden md:block">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="p-2 bg-green-100 rounded-full text-green-700"><i data-lucide="sun" class="w-5 h-5"></i></div>
+                        <span class="font-bold text-sage-900">Morning Ritual</span>
+                    </div>
+                    <p class="text-sm text-stone-500">"The calmest place in the city to start your day."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-green-600 font-bold uppercase tracking-widest text-xs">Our Collection</span>
+            <h2 class="text-4xl md:text-5xl font-serif font-bold mt-3 text-sage-900">Curated by Nature</h2>
+        </div>
+        
+        <div class="flex justify-center gap-4 mb-12" id="category-container">
+            <button onclick="filterProducts('All')" class="cat-btn active px-6 py-2 rounded-full text-sm font-bold transition bg-sage-900 text-white shadow-lg" data-cat="All">All</button>
+            <button onclick="filterProducts('Hot')" class="cat-btn px-6 py-2 rounded-full text-sm font-bold transition bg-white text-stone-500 hover:bg-sage-50 border border-stone-200" data-cat="Hot">Hot</button>
+            <button onclick="filterProducts('Cold')" class="cat-btn px-6 py-2 rounded-full text-sm font-bold transition bg-white text-stone-500 hover:bg-sage-50 border border-stone-200" data-cat="Cold">Cold</button>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            </div>
+    </section>
+
+    <section id="about" class="py-24 bg-sage-50 relative overflow-hidden">
+        <i data-lucide="sprout" class="absolute top-10 right-10 w-64 h-64 text-sage-100 -rotate-12"></i>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+            <div>
+                <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?q=80&w=2071&auto=format&fit=crop" 
+                     class="rounded-2xl shadow-2xl rotate-2 hover:rotate-0 transition duration-500 border-8 border-white" 
+                     alt="Pour over coffee">
+            </div>
+            <div>
+                <h2 class="text-4xl font-serif font-bold text-sage-900 mb-6">Slow Down. Drink Up.</h2>
+                <p class="text-stone-600 text-lg mb-6 leading-relaxed">
+                    In a world that rushes, Escafe stands still. We believe coffee is a ritual, not just fuel. 
+                    Our beans are fair-trade certified and grown in shade-covered canopies to preserve local bird habitats.
+                </p>
+                <div class="grid grid-cols-2 gap-6 mt-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <i data-lucide="heart-handshake" class="text-green-600 w-8 h-8 mb-3"></i>
+                        <h4 class="font-bold text-sage-900">Ethically Sourced</h4>
+                        <p class="text-sm text-stone-500 mt-1">Direct trade with farmers.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm">
+                        <i data-lucide="flower" class="text-green-600 w-8 h-8 mb-3"></i>
+                        <h4 class="font-bold text-sage-900">100% Organic</h4>
+                        <p class="text-sm text-stone-500 mt-1">No pesticides, ever.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="locations" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+                <h2 class="text-4xl font-serif font-bold text-sage-900">Find Your Sanctuary</h2>
+                <p class="text-stone-500 mt-2">Spaces designed for peace and conversation.</p>
+            </div>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition group border border-stone-100">
+                <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1947&auto=format&fit=crop" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-green-700 flex items-center gap-1">
+                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> OPEN
+                    </div>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-sage-900">The Greenhouse</h3>
+                <p class="text-stone-500 text-sm mb-4">42 Botanica Lane, Garden District</p>
+                <button class="text-green-600 font-bold text-sm uppercase tracking-wide hover:underline">Get Directions</button>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition group border border-stone-100">
+                <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
+                     <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-green-700 flex items-center gap-1">
+                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> OPEN
+                    </div>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-sage-900">Riverside Patio</h3>
+                <p class="text-stone-500 text-sm mb-4">88 Creek View, Old Town</p>
+                <button class="text-green-600 font-bold text-sm uppercase tracking-wide hover:underline">Get Directions</button>
+            </div>
+             <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition group border border-stone-100">
+                <div class="h-48 rounded-xl overflow-hidden mb-6 relative">
+                    <img src="https://images.unsplash.com/photo-1463797221720-6b07e6426c24?q=80&w=2071&auto=format&fit=crop" class="w-full h-full object-cover">
+                     <div class="absolute top-4 right-4 bg-white/90 px-3 py-1 rounded-full text-xs font-bold text-stone-500 flex items-center gap-1">
+                        <span class="w-2 h-2 bg-stone-400 rounded-full"></span> CLOSING SOON
+                    </div>
+                </div>
+                <h3 class="text-xl font-serif font-bold text-sage-900">The Library</h3>
+                <p class="text-stone-500 text-sm mb-4">102 Quiet St, Downtown</p>
+                <button class="text-green-600 font-bold text-sm uppercase tracking-wide hover:underline">Get Directions</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-sage-800 text-cream">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <i data-lucide="quote" class="text-green-400 w-10 h-10 mb-4 opacity-50"></i>
+                    <h2 class="text-4xl font-serif font-bold text-white">Community Rituals</h2>
+                    <p class="text-sage-200 mt-2 max-w-md">Real stories from people who have found their sanctuary with Escafe.</p>
+                </div>
+                <div class="flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-green-400">
+                    <span>4.9/5 Average Rating</span>
+                    <div class="flex">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-sage-900/50 p-8 rounded-2xl border border-sage-700 hover:border-green-500 transition duration-300">
+                    <div class="flex gap-1 text-green-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-sage-100 italic mb-6 leading-relaxed">"The 'Forest Floor Blend' completely changed my morning routine. It's not just coffee; it's a moment of absolute peace before the chaos begins."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100&h=100" class="w-10 h-10 rounded-full object-cover border-2 border-green-500">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Elena R.</h4>
+                            <p class="text-xs text-sage-400">Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-sage-900/50 p-8 rounded-2xl border border-sage-700 hover:border-green-500 transition duration-300">
+                    <div class="flex gap-1 text-green-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-sage-100 italic mb-6 leading-relaxed">"I visit The Greenhouse location twice a week to work. The atmosphere is unmatched, and the Oat Milk Matcha is consistently perfect."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100&h=100" class="w-10 h-10 rounded-full object-cover border-2 border-green-500">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Marcus Chen</h4>
+                            <p class="text-xs text-sage-400">Local Guide</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-sage-900/50 p-8 rounded-2xl border border-sage-700 hover:border-green-500 transition duration-300">
+                    <div class="flex gap-1 text-green-400 mb-4">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-sage-100 italic mb-6 leading-relaxed">"Finally, a coffee brand that actually cares about sustainability. The packaging is beautiful and 100% compostable. Customer for life."</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100&h=100" class="w-10 h-10 rounded-full object-cover border-2 border-green-500">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">Sarah J.</h4>
+                            <p class="text-xs text-sage-400">Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-sage-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <span class="text-3xl font-serif font-bold tracking-tight">Escafe.</span>
+                <p class="text-sage-200 mt-4 max-w-sm leading-relaxed">
+                    A refuge for the mind and spirit. Serving 100% organic, fair-trade coffee in spaces designed for serenity.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-sage-100 mb-4 uppercase tracking-widest text-xs">Menu</h4>
+                <ul class="space-y-3 text-sage-300 text-sm">
+                    <li><a href="#" class="hover:text-white transition">Seasonal Blends</a></li>
+                    <li><a href="#" class="hover:text-white transition">Loose Leaf Teas</a></li>
+                    <li><a href="#" class="hover:text-white transition">Vegan Pastries</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-sage-100 mb-4 uppercase tracking-widest text-xs">Connect</h4>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-sage-800 flex items-center justify-center hover:bg-green-600 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-sage-800 flex items-center justify-center hover:bg-green-600 transition"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-sage-800 flex items-center justify-center hover:bg-green-600 transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-sage-800 text-center text-sage-400 text-xs">
+            &copy; 2026 Escafe Organic Coffee. All rights reserved.
+        </div>
+    </footer>
+
+    <div id="cart-overlay" class="cart-overlay fixed inset-0 z-50 flex justify-end">
+        <div onclick="toggleCart(false)" class="absolute inset-0 bg-stone-900/40 backdrop-blur-sm"></div>
+        <div class="cart-panel relative w-full max-w-md bg-cream h-full shadow-2xl flex flex-col">
+            <div class="p-6 border-b border-stone-200 flex items-center justify-between bg-white">
+                <h2 class="text-xl font-serif font-bold text-sage-900 flex items-center gap-2">
+                    Your Selection
+                </h2>
+                <button onclick="toggleCart(false)" class="text-stone-400 hover:text-sage-800 transition">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-6 bg-cream"></div>
+            <div id="cart-footer" class="hidden p-6 bg-white border-t border-stone-100 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+                <div class="flex justify-between mb-4 text-xl font-serif font-bold text-sage-900">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button onclick="openCheckout()" class="w-full bg-sage-900 text-white py-4 rounded-full font-bold hover:bg-green-700 transition flex items-center justify-center gap-2 shadow-lg">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="checkout-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-sage-900/60 backdrop-blur-md"></div>
+        <div class="relative bg-cream w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-serif font-bold text-sage-900">Checkout</h2>
+                <button onclick="closeCheckout()" class="text-stone-400 hover:text-sage-800">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <form onsubmit="processOrder(event)" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-500 uppercase mb-1">First Name</label>
+                        <input type="text" required class="w-full bg-white border border-stone-200 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500 transition">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-500 uppercase mb-1">Last Name</label>
+                        <input type="text" required class="w-full bg-white border border-stone-200 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500 transition">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-stone-500 uppercase mb-1">Email</label>
+                    <input type="email" required class="w-full bg-white border border-stone-200 rounded-lg px-4 py-3 focus:outline-none focus:border-green-500 transition">
+                </div>
+                <div class="p-4 bg-green-50 rounded-xl border border-green-100 flex items-start gap-3">
+                    <i data-lucide="leaf" class="w-5 h-5 text-green-600 mt-0.5"></i>
+                    <p class="text-sm text-green-800">Relax. This is a demo environment. No real payment is required.</p>
+                </div>
+                <div class="pt-4 border-t border-stone-200 flex justify-between items-center font-bold text-lg text-sage-900">
+                    <span>Total Due:</span>
+                    <span id="checkout-total">$0.00</span>
+                </div>
+                <button type="submit" class="w-full bg-sage-900 text-white py-4 rounded-xl font-bold hover:bg-green-700 transition shadow-lg">
+                    Confirm Order
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="success-modal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center px-4">
+        <div class="absolute inset-0 bg-sage-900/90"></div>
+        <div class="relative bg-white w-full max-w-sm rounded-3xl p-8 text-center shadow-2xl">
+            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-10 h-10"></i>
+            </div>
+            <h2 class="text-2xl font-serif font-bold mb-2 text-sage-900">Order Placed</h2>
+            <p class="text-stone-500 mb-2">We are preparing your order.</p>
+            <div class="bg-stone-50 rounded-xl p-4 mb-8">
+                <p class="text-sm font-bold text-sage-900">Order #NATURE-882</p>
+                <p class="text-xs text-stone-400 mt-1 uppercase tracking-wide" id="order-date"></p>
+            </div>
+            <button onclick="location.reload()" class="w-full bg-sage-900 text-white py-3 rounded-xl font-bold hover:bg-green-700 transition">
+                Return to Home
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

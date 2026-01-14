@@ -1,0 +1,49 @@
+/* Base Background */
+body { 
+    background-color: #FDFBF7; 
+}
+
+/* Smooth Scrolling */
+html { 
+    scroll-behavior: smooth; 
+}
+
+/* Hide Scrollbar for cleaner UI */
+.no-scrollbar::-webkit-scrollbar { 
+    display: none; 
+}
+.no-scrollbar { 
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+}
+
+/* --- ANIMATIONS --- */
+
+/* Cart Slide-in Effect */
+.cart-overlay {
+    transition: opacity 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+.cart-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+.cart-panel {
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.cart-overlay.open .cart-panel {
+    transform: translateX(0);
+}
+
+/* Modal Fade-in Effect */
+.modal-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+.modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
