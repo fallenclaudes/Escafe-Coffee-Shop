@@ -12,7 +12,7 @@
 
 
 ## 🚀 Live Demo
-[**[Click here to view the Live Demo](https://escafe-coffee.netlify.app/)**](#) 
+[**[Click here to view the Live Demo](https://escafe-coffee.netlify.app/)**] 
 
 ## 🛠️ Technical Stack
 
