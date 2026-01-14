@@ -6,7 +6,7 @@
 
 **Escafe** is a high-performance, responsive e-commerce interface designed for a boutique coffee brand. This project demonstrates a mastery of core web fundamentals, specifically focusing on DOM manipulation, state management, and local persistence without reliance on heavy frontend frameworks.
 
-![Project Screenshot]
+**Escafe Page**
 <img width="1901" height="942" alt="image" src="https://github.com/user-attachments/assets/73545777-d459-4334-8e67-87ad528521d4" />
 
 
