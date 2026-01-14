@@ -1,4 +1,4 @@
-# Escafe | Organic Coffee E-Commerce Frontend
+<img width="1901" height="942" alt="image" src="https://github.com/user-attachments/assets/f8066b3c-b9b6-4cf3-995a-6814caa7abd7" /># Escafe | Organic Coffee E-Commerce Frontend
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success)
 ![Performance](https://img.shields.io/badge/Lighthouse-100%25-brightgreen)
@@ -6,8 +6,10 @@
 
 **Escafe** is a high-performance, responsive e-commerce interface designed for a boutique coffee brand. This project demonstrates a mastery of core web fundamentals, specifically focusing on DOM manipulation, state management, and local persistence without reliance on heavy frontend frameworks.
 
-![Project Screenshot](./screenshot.png)
-*(Note: Add a screenshot of your site here)*
+![Project Screenshot]
+<img width="1901" height="942" alt="image" src="https://github.com/user-attachments/assets/73545777-d459-4334-8e67-87ad528521d4" />
+
+
 
 ## 🚀 Live Demo
 [**Click here to view the Live Demo**](#) *(Replace this with your Netlify link)*
