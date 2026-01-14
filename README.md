@@ -1,4 +1,4 @@
-<img width="1901" height="942" alt="image" src="https://github.com/user-attachments/assets/f8066b3c-b9b6-4cf3-995a-6814caa7abd7" /># Escafe | Organic Coffee E-Commerce Frontend
+# Escafe | Organic Coffee E-Commerce Frontend
 
 ![Project Status](https://img.shields.io/badge/Status-Completed-success)
 ![Performance](https://img.shields.io/badge/Lighthouse-100%25-brightgreen)
